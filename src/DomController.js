@@ -1,24 +1,39 @@
 export default function displayWeather(data) {
   const weatherTable = document.querySelector("#weather-table");
   for (let i = 0; i < 7; i += 1) {
+    const { tempmax, tempmin, conditions, description, icon, datetime } =
+      data.days[i];
+
     const dayDiv = document.createElement("div");
+    dayDiv.className = "day";
+    dayDiv.dataset.description = description;
+    dayDiv.dataset.conditions = conditions;
+
     const title = document.createElement("h2");
     const iconIMG = document.createElement("img");
     const tempDiv = document.createElement("div");
     const tempmaxSpan = document.createElement("span");
     const tempminSpan = document.createElement("span");
-    console.log(data.days[i]);
-    const {tempmax, tempmin, conditions, description, icon, datetime } = data.days[i];
+
+    title.className = "dayTitle";
+    iconIMG.className = "weatherIcon";
+    iconIMG.title = conditions;
+    tempDiv.className = "temp";
+    tempmaxSpan.className = "tempmax";
+    tempminSpan.className = "tempmin";
 
     title.textContent = getDay(datetime);
-    loadIcon(icon).then((src) =>{
+    loadIcon(icon).then((src) => {
       iconIMG.src = src;
     });
     tempmaxSpan.textContent = tempmax;
     tempminSpan.textContent = tempmin;
 
-    tempDiv.appendChild(tempmaxSpan).appendChild(tempminSpan);
-    dayDiv.appendChild(title).appendChild(iconIMG).appendChild(tempDiv);
+    tempDiv.appendChild(tempmaxSpan);
+    tempDiv.appendChild(tempminSpan);
+    dayDiv.appendChild(title);
+    dayDiv.appendChild(iconIMG);
+    dayDiv.appendChild(tempDiv);
     weatherTable.appendChild(dayDiv);
   }
 }

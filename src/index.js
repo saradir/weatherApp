@@ -1,3 +1,5 @@
+import "./styles.css";
+
 import displayWeather from "./DomController";
 
 const API_KEY = "QKDDQMN9MAAJ4STHV6WAGERGZ";
