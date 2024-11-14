@@ -1,5 +1,6 @@
 export default function displayWeather(data) {
   const weatherTable = document.querySelector("#weather-table");
+  weatherTable.innerHTML = "";
   for (let i = 0; i < 7; i += 1) {
     const { tempmax, tempmin, conditions, description, icon, datetime } =
       data.days[i];
