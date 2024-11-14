@@ -1,5 +1,4 @@
 import "./styles.css";
-
 import displayWeather from "./DomController";
 
 const API_KEY = "QKDDQMN9MAAJ4STHV6WAGERGZ";
@@ -13,7 +12,10 @@ async function getWeather(location) {
 
 document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
-  getWeather(e.target["location-input"].value).then((data) =>
-    displayWeather(data));
-  
+  getWeather(e.target["location-input"].value)
+    .then((data) => displayWeather(data))
+    .catch(() =>
+      console.log(
+        "Failed to fetch weather. Are you sure you typed the location correctly?")
+    );
 });

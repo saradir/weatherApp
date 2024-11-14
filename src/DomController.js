@@ -23,9 +23,12 @@ export default function displayWeather(data) {
     tempminSpan.className = "tempmin";
 
     title.textContent = getDay(datetime);
-    loadIcon(icon).then((src) => {
-      iconIMG.src = src;
-    });
+    loadIcon(icon)
+      .then((src) => {
+        iconIMG.src = src;
+      })
+      .catch(console.log("failed to load icon"));
+
     tempmaxSpan.textContent = tempmax;
     tempminSpan.textContent = tempmin;
 
